@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Configuration
 public class UpbitBotConfig {
 	
+	// Upbit의 OPEN API 키 및 서버 주소 설정을 위한 Config 클래스
+	
 	@Value("${UPBIT_OPEN_API_ACCESS_KEY}")
 	private String ACCESS_KEY;
 	
