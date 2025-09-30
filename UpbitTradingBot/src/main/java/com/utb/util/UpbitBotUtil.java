@@ -2,7 +2,6 @@ package com.utb.util;
 
 import java.util.UUID;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,7 +21,6 @@ public class UpbitBotUtil {
 	
 	private final UpbitBotConfig upbitBotConfig;
 	
-	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
@@ -30,9 +28,6 @@ public class UpbitBotUtil {
 	public String generateAuthenticationToken() {
 		String ACCESS_KEY = upbitBotConfig.getACCESS_KEY();
 		String SECRET_KEY = upbitBotConfig.getSECRET_KEY();
-		
-		log.info(ACCESS_KEY);
-		log.info(SECRET_KEY);
 		
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
         String jwtToken = JWT.create()

@@ -1,7 +1,5 @@
 package com.utb.controller;
 
-import java.io.IOException;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,27 +17,31 @@ public class UpbitBotController {
     }
 
     // 보유한 화폐 수량 확인 기능 (계좌 조회)
-    @GetMapping("/upbit/accounts")
-    public String getAccounts() throws IOException {
+    @GetMapping("/accounts")
+    public String getAccounts() {
         return upbitBotService.getAccounts();
     }
-    
-    // 매수 기능
-//    @PostMapping("/buy")
-//    public JsonNode buyOrder(
-//            @RequestParam String market,
-//            @RequestParam String volume,
-//            @RequestParam String price) throws Exception {
-//        return upbitBotService.buyOrder(market, volume, price);
-//    }
-    
-    // 매도 기능
-//    @PostMapping("/sell")
-//    public JsonNode sellOrder(
-//            @RequestParam String market,
-//            @RequestParam String volume,
-//            @RequestParam String price) throws Exception {
-//        return upbitBotService.sellOrder(market, volume, price);
-//    }
+
+    // 매수 주문
+    @PostMapping("/buy")
+    public String buyOrder(
+            @RequestParam String market,
+            @RequestParam String volume,
+            @RequestParam String price,
+            @RequestParam String ordType
+    ) {
+        return upbitBotService.placeBuyOrder(market, volume, price, ordType);
+    }
+
+    // 매도 주문
+    @PostMapping("/sell")
+    public String sellOrder(
+            @RequestParam String market,
+            @RequestParam String volume,
+            @RequestParam String price,
+            @RequestParam String ordType
+    ) {
+        return upbitBotService.placeSellOrder(market, volume, price, ordType);
+    }
     
 }
