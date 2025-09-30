@@ -1,8 +1,5 @@
 package com.utb.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,20 +8,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.utb.config.UpbitBotConfig;
 import com.utb.util.UpbitBotUtil;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 public class UpbitBotService {
 	private final UpbitBotConfig upbitBotConfig;
 	private final UpbitBotUtil upbitBotUtil;
-	
-	private final RestTemplate restTemplate;
 	
 	// 보유한 화폐들의 수량
     // 계좌 조회
