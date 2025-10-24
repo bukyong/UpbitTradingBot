@@ -16,7 +16,7 @@ public class UpbitBotController {
         this.upbitBotService = upbitBotService;
     }
 
-    // 보유한 화폐 수량 확인 기능 (계좌 조회)
+    // 계좌 조회
     @GetMapping("/accounts")
     public String getAccounts() {
         return upbitBotService.getAccounts();
@@ -25,23 +25,30 @@ public class UpbitBotController {
     // 매수 주문
     @PostMapping("/buy")
     public String buyOrder(
-            @RequestParam String market,
-            @RequestParam String volume,
-            @RequestParam String price,
-            @RequestParam String ordType
-    ) {
+            @RequestParam("market") String market,
+            @RequestParam("volume") String volume,
+            @RequestParam("price") String price,
+            @RequestParam("ord_type") String ordType
+    ) throws Exception {
         return upbitBotService.placeBuyOrder(market, volume, price, ordType);
     }
 
     // 매도 주문
     @PostMapping("/sell")
     public String sellOrder(
-            @RequestParam String market,
-            @RequestParam String volume,
-            @RequestParam String price,
-            @RequestParam String ordType
-    ) {
+            @RequestParam("market") String market,
+            @RequestParam("volume") String volume,
+            @RequestParam("price") String price,
+            @RequestParam("ord_type") String ordType
+    ) throws Exception {
         return upbitBotService.placeSellOrder(market, volume, price, ordType);
     }
+    
+    // JWT 토큰만 생성 (Postman 테스트용)
+//    @PostMapping("/token")
+//    public ResponseEntity<String> generateJwtToken() {
+//        String token = upbitBotService.createJwtToken();
+//        return ResponseEntity.ok(token);
+//    }
     
 }
