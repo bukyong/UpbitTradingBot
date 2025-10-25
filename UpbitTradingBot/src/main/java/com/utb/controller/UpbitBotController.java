@@ -15,14 +15,23 @@ public class UpbitBotController {
     public UpbitBotController(UpbitBotService upbitBotService) {
         this.upbitBotService = upbitBotService;
     }
+    
+    // 시세 조회 API
+    // ex) GET /ticker?market=KRW-DOGE
+    @GetMapping("/ticker")
+    public String getTicker(@RequestParam("market") String market) {
+        return upbitBotService.getTicker(market);
+    }
 
-    // 계좌 조회
+    // 계좌 조회 API
+    // ex) GET /accounts
     @GetMapping("/accounts")
     public String getAccounts() {
         return upbitBotService.getAccounts();
     }
 
-    // 매수 주문
+    // 매수 주문 API
+    // ex) POST /buy?market=KRW-DOGE&volume=100&price=300&ord_type=limit
     @PostMapping("/buy")
     public String buyOrder(
             @RequestParam("market") String market,
@@ -33,7 +42,8 @@ public class UpbitBotController {
         return upbitBotService.placeBuyOrder(market, volume, price, ordType);
     }
 
-    // 매도 주문
+    // 매도 주문 API
+    // ex) POST /sell?market=KRW-DOGE&volume=100&price=300&ord_type=limit
     @PostMapping("/sell")
     public String sellOrder(
             @RequestParam("market") String market,

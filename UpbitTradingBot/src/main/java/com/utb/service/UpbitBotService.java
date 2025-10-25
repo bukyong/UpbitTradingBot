@@ -27,7 +27,28 @@ public class UpbitBotService {
 	private final UpbitBotUtil upbitBotUtil;
 	private final RestTemplate restTemplate = new RestTemplate();
 	
-	// TODO : 시세 조회 기능 추가하기
+	// TODO : 시세 조회 모니터링 기능 추가
+	
+    // 시세 조회
+	// - 코인 시세를 조회
+    // - @param market 예: KRW-BTC, KRW-DOGE 등등
+    public String getTicker(String market) {
+        try {
+            String url = upbitBotUtil.getSERVER_URL() + "/v1/ticker?markets=" + market;
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Accept", "application/json");
+
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+            ResponseEntity<String> response =
+                    restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+
+            return response.getBody();
+        } catch (Exception e) {
+            log.severe("시세 조회 실패 : " + e.getMessage());
+            return "시세 조회 실패 : " + e.getMessage();
+        }
+    }
 	
     // 계좌 조회
 	// - 보유 중인 코인 및 원화 잔고를 조회

@@ -24,6 +24,8 @@ public class UpbitBotUtil {
 	
 	private final UpbitBotConfig upbitBotConfig;
 	
+	// TODO : 시세 조회 모니터링 기능 추가
+	
 	// 인증 토큰 생성 메서드
 	public String generateAuthenticationToken(Map<String, String> params) {
 	    String ACCESS_KEY = upbitBotConfig.getACCESS_KEY();
