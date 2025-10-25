@@ -15,12 +15,12 @@ import com.utb.config.UpbitBotConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
+// 자주 쓰는 것, 공통으로 쓰는 것들을 모아놓은 Util 클래스
+
 @Component
 @RequiredArgsConstructor
 @Log
 public class UpbitBotUtil {
-	
-	// 자주 쓰는 것, 공통으로 쓰는 것들을 모아놓은 Util 클래스
 	
 	private final UpbitBotConfig upbitBotConfig;
 	
@@ -58,4 +58,5 @@ public class UpbitBotUtil {
     public String getSERVER_URL() {
         return upbitBotConfig.getSERVER_URL();
     }
+    
 }

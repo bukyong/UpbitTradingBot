@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,19 +18,17 @@ import com.utb.util.UpbitBotUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
+// 업비트 API와 통신하는 Service 클래스
+
 @Service
 @RequiredArgsConstructor
 @Log
 public class UpbitBotService {
 	
-	// 업비트 API와 통신하는 Service 클래스
-	
 	private final UpbitBotUtil upbitBotUtil;
 	private final RestTemplate restTemplate = new RestTemplate();
 	
-	// TODO : 시세 조회 모니터링 기능 추가
-	
-    // 시세 조회
+    // 시세 조회 (테스트 용)
 	// - 코인 시세를 조회
     // - @param market 예: KRW-BTC, KRW-DOGE 등등
     public String getTicker(String market) {
@@ -49,6 +48,16 @@ public class UpbitBotService {
             return "시세 조회 실패 : " + e.getMessage();
         }
     }
+    
+    // 시세 조회
+	// - 코인 시세를 조회
+	public double getCurrentPrice(String market) {
+	    String url = upbitBotUtil.getSERVER_URL() + "/v1/ticker?markets=" + market;
+	    ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+	    JSONArray jsonArray = new JSONArray(response.getBody());
+	    return jsonArray.getJSONObject(0).getDouble("trade_price");
+	}
 	
     // 계좌 조회
 	// - 보유 중인 코인 및 원화 잔고를 조회

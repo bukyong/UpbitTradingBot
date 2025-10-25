@@ -5,12 +5,13 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.Getter;
 
+
+// Upbit의 OPEN API 키 및 서버 주소 설정을 위한 Config 클래스
+// application.properties에서 주입받음
+
 @Getter
 @Configuration
 public class UpbitBotConfig {
-	
-	// Upbit의 OPEN API 키 및 서버 주소 설정을 위한 Config 클래스
-	// application.properties에서 주입받음
 	
 	@Value("${UPBIT_API_ACCESS_KEY}")
 	private String ACCESS_KEY;
@@ -20,4 +21,5 @@ public class UpbitBotConfig {
 	
     @Value("${UPBIT_API_SERVER_URL}")
     private String SERVER_URL;
+    
 }

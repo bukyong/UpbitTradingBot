@@ -39,6 +39,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'com.auth0:java-jwt:3.18.1'
 	implementation 'com.google.guava:guava:33.0.0-jre'
+	implementation 'org.json:json:20240303'
 }
 
 tasks.named('test') {
